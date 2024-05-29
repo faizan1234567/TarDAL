@@ -4,7 +4,6 @@ from pathlib import Path
 
 import torch.backends.cudnn
 import yaml
-
 import scripts
 from config import from_dict
 

@@ -12,7 +12,7 @@ debug    :
 #   backward method: fuse (direct training DT)
 #   backward method: detect (task-oriented training TT)
 #   backward method: fuse & detect (cooperative training CT)
-strategy : fuse & detect
+strategy : fuse
 
 # fuse network settings: core of infrared and visible fusion
 fuse     :
@@ -38,8 +38,8 @@ iqa      :
 #   we provide four built-in representative datasets,
 #   if you want to use some custom datasets, please refer to the documentation to write yourself or open an issue.
 dataset  :
-  name  : M3FD # dataset folder to be trained with (fuse: TNO, RoadScene; fuse & detect: M3FD, MultiSpectral, etc.)
-  root  : data/m3fd # dataset root path
+  name  : RoadScene # dataset folder to be trained with (fuse: TNO, RoadScene; fuse & detect: M3FD, MultiSpectral, etc.)
+  root  : data/nust_fusion_dataset # dataset root path
   # only available for fuse & detect
   detect:
     hsv        : [ 0.015,0.7,0.4 ] # image HSV augmentation (fraction) [developing]
@@ -63,7 +63,7 @@ train    :
 
 # inference settings:
 inference:
-  batch_size : 8 # batch size used to train
+  batch_size : 1 # batch size used to train
   num_workers: 8 # number of workers used in data loading
   use_eval   : true # use eval mode in inference mode, default true, false for v0 weights.
   grayscale  : false # ignore dataset settings, save as grayscale image
