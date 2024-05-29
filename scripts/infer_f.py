@@ -56,9 +56,9 @@ class InferF:
         p_l = tqdm(self.p_loader, total=len(self.p_loader), ncols=120)
         for sample in p_l:
             sample = dict_to_device(sample, self.fuse.device)
-            # f_net forward
+            # f_net forward, fuse vi and ir images in grayscale and return a grayscale iamge result
             fus = self.fuse.inference(ir=sample['ir'], vi=sample['vi'])
-            # recolor
+            # Faizan: post processin to reterive an RGB image from grayscale fused results
             if self.data_t.color and self.config.inference.grayscale is False:
                 fus = torch.cat([fus, sample['cbcr']], dim=1)
                 fus = ycbcr_to_rgb(fus)

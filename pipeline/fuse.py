@@ -2,6 +2,7 @@ import logging
 import sys
 from pathlib import Path
 from typing import Literal, List, Tuple, Optional
+import os
 
 import torch
 import torch.backends.cudnn
@@ -10,6 +11,12 @@ from kornia.losses import MS_SSIMLoss, ssim_loss
 from numpy import number
 from torch import Tensor
 from torch.nn.functional import l1_loss
+
+FILE = Path(__file__).resolve()
+ROOT = FILE.parents[0].parents[0]  # root directory
+if str(ROOT) not in sys.path:
+    sys.path.append(str(ROOT))  # add ROOT to PATH
+ROOT = Path(os.path.relpath(ROOT, Path.cwd()))  # relative
 
 from functions.div_loss import div_loss
 from functions.get_param_groups import get_param_groups
