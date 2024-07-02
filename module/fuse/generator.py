@@ -48,9 +48,8 @@ class Generator(nn.Module):
             ),
         )
 
-    def forward(self, ir: Tensor, vi: Tensor) -> Tensor:
-        src = torch.cat([ir, vi], dim=1)
-        x = self.encoder(src)
+    def forward(self, images) -> Tensor:
+        x = self.encoder(images)
         for i in range(self.depth):
             t = self.dense[i](x)
             x = torch.cat([x, t], dim=1)
